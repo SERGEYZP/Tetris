@@ -24,6 +24,7 @@ namespace Tetris
 		public Field(int x, int y, int width, int height, char sym) : base(x, y, sym)
 		{
 			hLine = new HorizontalLine(x, x + width - 1, y, ' ', ConsoleColor.White);
+			Screen.Instance.RemoveObserver(hLine); //отключить отрисовку
 			this.width = width;
 			this.height = height;
 		}
@@ -35,7 +36,6 @@ namespace Tetris
 			
 			pList.AddRange(block.pList);
 			block.pList.Clear();
-			Draw();
 		}
 
 		public int DeleteFilledLines()
@@ -49,10 +49,8 @@ namespace Tetris
 				if(lineNumber != -1)
 				{
 					++deletedLines;
-					Erase();
 					DeleteLine(lineNumber);
 					JoinFieldParts(lineNumber);
-					Draw();
 				}
 			}
 			while(lineNumber != -1);

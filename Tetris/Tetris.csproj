@@ -59,6 +59,8 @@
     <Compile Include="Game.cs" />
     <Compile Include="GameInfo.cs" />
     <Compile Include="HorizontalLine.cs" />
+    <Compile Include="Observable.cs" />
+    <Compile Include="Observer.cs" />
     <Compile Include="Point.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

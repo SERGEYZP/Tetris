@@ -11,12 +11,13 @@ using System;
 namespace Tetris
 {
 	/// <summary>
-	/// Description of Screen.
+	/// Screen is Singleton.
 	/// </summary>
-	public class Screen
+	public class Screen : Observable
 	{
 		readonly static int width = 80;
 		readonly static int height = 25;
+		static Screen instance;
 
 		public static int Width {
 			get {
@@ -30,7 +31,20 @@ namespace Tetris
 			}
 		}
 
-		public void SetWindowSettings()
+		public static Screen Instance {
+			get {
+				if(instance == null)
+					instance = new Screen();
+				return instance;
+			}
+		}
+		
+		protected Screen()
+		{
+		}
+		
+		
+		public static void SetWindowSettings()
 		{
 			Console.SetBufferSize(width, height);
 			Console.CursorVisible = false;
@@ -48,7 +62,7 @@ namespace Tetris
 			Console.WriteLine(text, param);
 		}
 		
-		public void DrawGameOverMessage(int score)
+		public static void DrawGameOverMessage(int score)
 		{
 			int xOffset = (width - 30) / 2; //30 - длина нижеприведенных строк
 			int yOffset = (height - 6) / 2; //6 - число нижеприведенных строк
