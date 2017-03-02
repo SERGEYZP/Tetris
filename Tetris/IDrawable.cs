@@ -11,14 +11,11 @@ using System;
 namespace Tetris
 {
 	/// <summary>
-	/// Description of Observer.
+	/// Description of IDrawable.
 	/// </summary>
-	public abstract class Observer
+	public interface IDrawable
 	{
-		protected Observer()
-		{
-		}
-		
-		public abstract void Notify();
+		void Draw();
+		void Erase();
 	}
 }

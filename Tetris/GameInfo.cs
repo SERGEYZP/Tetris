@@ -13,7 +13,7 @@ namespace Tetris
 	/// <summary>
 	/// Description of GameInfo.
 	/// </summary>
-	public class GameInfo : Observer
+	public class GameInfo : IDrawable
 	{
 		int score;
 		int level;
@@ -34,7 +34,7 @@ namespace Tetris
 			isGameOver = false;
 			infoPositionOnScreenX = fieldCoord.X + fieldCoord.Width + 3;
 			infoPositionOnScreenY = fieldCoord.Y - fieldCoord.Height + 6;
-			Screen.Instance.AddObserver(this);
+			Screen.Instance.AddIDrawableObj(this);
 		}
 
 		public int Score {
@@ -89,20 +89,15 @@ namespace Tetris
 			}
 		}
 		
-		void Draw()
+		public void Draw()
 		{
 			Console.ForegroundColor = ConsoleColor.White;
 			Screen.WriteText("Level: {0,4}", level, infoPositionOnScreenX, infoPositionOnScreenY);
 			Screen.WriteText("Score: {0,4}", score, infoPositionOnScreenX, infoPositionOnScreenY + 1);
 		}
 		
-		void Erase()
+		public void Erase()
 		{
-		}
-		
-		public override void Notify()
-		{
-			Draw();
 		}
 	}
 }

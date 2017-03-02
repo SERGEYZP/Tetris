@@ -24,7 +24,7 @@ namespace Tetris
 		public Field(int x, int y, int width, int height, char sym) : base(x, y, sym)
 		{
 			hLine = new HorizontalLine(x, x + width - 1, y, ' ', ConsoleColor.White);
-			Screen.Instance.RemoveObserver(hLine); //отключить отрисовку
+			Screen.Instance.RemoveIDrawableObj(hLine); //отключить отрисовку
 			this.width = width;
 			this.height = height;
 		}

@@ -74,7 +74,7 @@ namespace Tetris
 			ReadUserInput();
 			ExecuteUserLogic();
 			ExecuteWorldLogic();
-			UpdateScreen();
+			Screen.Instance.Update();
 		}
 		
 		void ReadUserInput()
@@ -119,12 +119,6 @@ namespace Tetris
 			}
 		}
 
-		void UpdateScreen()
-		{
-			Console.Clear();
-			Screen.Instance.Notify();
-		}
-		
 		bool HandleKey(ConsoleKey key)
 		{
 			bool moveDone = true;
