@@ -15,7 +15,7 @@ namespace Tetris
 	/// <summary>
 	/// Description of Figure.
 	/// </summary>
-	public class Figure : IDrawable
+	public class Figure : Observer
 	{
 		public List<Point> pList;
 		public int x;
@@ -28,26 +28,16 @@ namespace Tetris
 			this.x = x;
 			this.y = y;
 			this.sym = sym;
-			Screen.Instance.AddIDrawableObj(this);
+			Screen.Instance.AddObserver(this);
 		}
 		
-		public Figure(Figure figure)
-		{
-			pList = new List<Point>();
-			foreach (var point in figure.pList)
-				pList.Add(new Point(point));
-			this.x = figure.x;
-			this.y = figure.y;
-			this.sym = figure.sym;
-		}
-		
-		public void Draw()
+		void Draw()
 		{
 			foreach(Point p in pList)
 				p.Draw();
 		}
 		
-		public void Erase()
+		void Erase()
 		{
 			foreach(Point p in pList)
 				p.Erase();	
@@ -113,6 +103,11 @@ namespace Tetris
 					return true;
 			
 			return false;
+		}
+		
+		public override void Notify()
+		{
+			Draw();
 		}
 	}
 }
