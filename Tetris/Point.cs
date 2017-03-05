@@ -60,5 +60,14 @@ namespace Tetris
 		{
 			return x == p.x && y == p.y;
 		}
+
+		public bool IsEqual(Point p)
+		{
+			//Check whether the objects are the same object.
+	        if(Object.ReferenceEquals(this, p)) return true;
+	
+	        //Check whether the point's properties are equal.
+	        return p != null && x == p.x && y == p.y && sym == p.sym && color == p.color;
+		}
 	}
 }

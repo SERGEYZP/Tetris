@@ -121,8 +121,7 @@ namespace Tetris
 
 		void UpdateScreen()
 		{
-			Console.Clear();
-			Screen.Instance.Notify();
+			Screen.Instance.Update();
 		}
 		
 		bool HandleKey(ConsoleKey key)

@@ -15,7 +15,7 @@ namespace Tetris
 	/// <summary>
 	/// Description of Figure.
 	/// </summary>
-	public class Figure : Observer
+	public class Figure : Drawable
 	{
 		public List<Point> pList;
 		public int x;
@@ -28,16 +28,25 @@ namespace Tetris
 			this.x = x;
 			this.y = y;
 			this.sym = sym;
-			Screen.Instance.AddObserver(this);
 		}
 		
-		void Draw()
+		public Figure(Figure figure) : base(true)
+		{
+			pList = new List<Point>();
+			foreach (var point in figure.pList)
+				pList.Add(new Point(point));
+			x = figure.x;
+			y = figure.y;
+			sym = figure.sym;
+		}
+		
+		public override void Draw()
 		{
 			foreach(Point p in pList)
 				p.Draw();
 		}
 		
-		void Erase()
+		public override void Erase()
 		{
 			foreach(Point p in pList)
 				p.Erase();	
@@ -105,9 +114,33 @@ namespace Tetris
 			return false;
 		}
 		
-		public override void Notify()
+		#region implemented abstract members of Drawable
+		
+//		public override bool IsEqual(Drawable obj)
+//		{
+//			var figure = obj as Figure;
+//			if(figure != null)
+//				if(x == figure.x && y == figure.y)
+//					return true;
+//			return false;
+//		}
+		
+		public override bool IsEqual(Drawable obj)
 		{
-			Draw();
+			var figure = obj as Figure;
+			if(figure != null)
+				if(x == figure.x && y == figure.y && pList.Count == figure.pList.Count)
+				{
+					for (int i = 0; i < pList.Count; i++)
+						if(!pList[i].IsEqual(figure.pList[i]))
+							return false;
+					
+					return true;
+				}
+					
+			return false;
 		}
+		
+		#endregion
 	}
 }

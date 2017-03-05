@@ -13,11 +13,11 @@ namespace Tetris
 	/// <summary>
 	/// Screen is Singleton.
 	/// </summary>
-	public class Screen : Observable
+	public class Screen : DrawableObjects
 	{
 		readonly static int width = 80;
 		readonly static int height = 25;
-		static Screen instance;
+		static Screen instance = new Screen();
 
 		public static int Width {
 			get {
@@ -33,8 +33,6 @@ namespace Tetris
 
 		public static Screen Instance {
 			get {
-				if(instance == null)
-					instance = new Screen();
 				return instance;
 			}
 		}
