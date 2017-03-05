@@ -30,14 +30,6 @@ namespace Tetris
 			wList.Add(leftLine);
 			wList.Add(rightLine);
 			wList.Add(bottomLine);
-			
-			Draw();
-		}
-		
-		public void Draw()
-		{
-			foreach(Figure wall in wList)
-				wall.Draw();
 		}
 	}
 }

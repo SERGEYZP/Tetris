@@ -33,15 +33,13 @@ namespace Tetris
 		readonly Field field;
 		readonly BlocksManager blocksManager;
 		readonly GameInfo gameInfo;
-		readonly Screen screen;
 		
 		public Game()
 		{
 			i = startLevel;
 			key = default(ConsoleKeyInfo);
 			fieldCoord = new FieldCoord();
-			screen = new Screen();
-			screen.SetWindowSettings();
+			Screen.SetWindowSettings();
 			gameInfo = new GameInfo(fieldCoord, startLevel, maxLevel);
 			wall = new Wall(fieldCoord.X - 1, fieldCoord.Y + 1, fieldCoord.Width + 2, fieldCoord.Height + 1, '+', ConsoleColor.Gray);
 			field = new Field(fieldCoord.X, fieldCoord.Y, fieldCoord.Width, fieldCoord.Height, '#');
@@ -67,7 +65,7 @@ namespace Tetris
 			}
 			
 			//TODO (попробовал через паттерн Observer, экран начинает мигать!!!)в классе Screen создать список (интерфейс IDrawable) с фигурами (Figure), и пробегаясь по списку их отрисовывать, перед этим очистив экран
-			screen.DrawGameOverMessage(gameInfo.Score);
+			Screen.DrawGameOverMessage(gameInfo.Score);
 			Console.ReadKey(true);
 		}
 
@@ -76,6 +74,7 @@ namespace Tetris
 			ReadUserInput();
 			ExecuteUserLogic();
 			ExecuteWorldLogic();
+			UpdateScreen();
 		}
 		
 		void ReadUserInput()
@@ -119,13 +118,16 @@ namespace Tetris
 				}
 			}
 		}
+
+		void UpdateScreen()
+		{
+			Screen.Instance.Update();
+		}
 		
 		bool HandleKey(ConsoleKey key)
 		{
 			bool moveDone = true;
 			Block currentBlock = blocksManager.CurrentBlock;
-			
-			currentBlock.Erase();
 			
 			switch(key) //TODO что-то с этим сделать!!!
 			{
@@ -177,8 +179,6 @@ namespace Tetris
 					i = maxLevel; //чтобы "поле" сразу "съело" блок
 					break;
 			}
-			
-			currentBlock.Draw();
 			
 			return moveDone;
 		}

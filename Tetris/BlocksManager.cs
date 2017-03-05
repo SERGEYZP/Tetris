@@ -41,16 +41,13 @@ namespace Tetris
 
 		void SetNextBlockAsCurrentBlock()
 		{
-			nextBlock.Erase();
 			currentBlock = nextBlock;
 			currentBlock.MoveToX(fieldCenterX);
-			currentBlock.Draw();
 		}
 
 		void CreateNextBlock()
 		{
 			nextBlock = blockCreator.CreateBlock();
-			nextBlock.Draw();
 		}
 	}
 }

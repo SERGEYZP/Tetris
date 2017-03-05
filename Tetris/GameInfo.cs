@@ -13,7 +13,7 @@ namespace Tetris
 	/// <summary>
 	/// Description of GameInfo.
 	/// </summary>
-	public class GameInfo
+	public class GameInfo : Drawable
 	{
 		int score;
 		int level;
@@ -34,7 +34,11 @@ namespace Tetris
 			isGameOver = false;
 			infoPositionOnScreenX = fieldCoord.X + fieldCoord.Width + 3;
 			infoPositionOnScreenY = fieldCoord.Y - fieldCoord.Height + 6;
-			Draw();
+		}
+
+		//заглушка конструктора копирования
+		public GameInfo(GameInfo gameInfo) : base(true)
+		{
 		}
 
 		public int Score {
@@ -86,15 +90,29 @@ namespace Tetris
 			if(deletedLines != 0) {
 				CalculateScore(deletedLines);
 				CalculateLevel();
-				Draw();
 			}
 		}
 		
-		public void Draw()
+		public override void Draw()
 		{
 			Console.ForegroundColor = ConsoleColor.White;
 			Screen.WriteText("Level: {0,4}", level, infoPositionOnScreenX, infoPositionOnScreenY);
 			Screen.WriteText("Score: {0,4}", score, infoPositionOnScreenX, infoPositionOnScreenY + 1);
 		}
+		
+		public override void Erase()
+		{
+			//ничего не нужно стирать, вызов метода Draw() всегда отрисовывает поверх предыдущего места
+		}
+
+		#region implemented abstract members of Drawable
+
+		//заглушка метода сравнения, т.к. информация gameInfo всегда отрисовывается поверх предыдущего места
+		public override bool IsEqual(Drawable obj)
+		{
+			return true;
+		}
+
+		#endregion
 	}
 }

@@ -24,18 +24,20 @@ namespace Tetris
 		public Field(int x, int y, int width, int height, char sym) : base(x, y, sym)
 		{
 			hLine = new HorizontalLine(x, x + width - 1, y, ' ', ConsoleColor.White);
+			Screen.Instance.RemoveDrawableObj(hLine); //отключить отрисовку
 			this.width = width;
 			this.height = height;
 		}
 
 		public void AppendBlock(Block block)
 		{
+			Screen.Instance.RemoveDrawableObj(block);
+			
 			foreach(Point p in block.pList)
 				p.sym = sym;
 			
 			pList.AddRange(block.pList);
 			block.pList.Clear();
-			Draw();
 		}
 
 		public int DeleteFilledLines()
@@ -49,10 +51,8 @@ namespace Tetris
 				if(lineNumber != -1)
 				{
 					++deletedLines;
-					Erase();
 					DeleteLine(lineNumber);
 					JoinFieldParts(lineNumber);
-					Draw();
 				}
 			}
 			while(lineNumber != -1);
@@ -97,8 +97,6 @@ namespace Tetris
 			foreach(Point p in pListCopy)
 				if(p.y == y_LineToDelete)
 					pList.Remove(p);
-			
-			pListCopy.Clear();
 		}
 
 		void JoinFieldParts(int emptyLineNumber)

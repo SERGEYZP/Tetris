@@ -59,6 +59,8 @@
     <Compile Include="Game.cs" />
     <Compile Include="GameInfo.cs" />
     <Compile Include="HorizontalLine.cs" />
+    <Compile Include="DrawableObjects.cs" />
+    <Compile Include="Drawable.cs" />
     <Compile Include="Point.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -78,9 +80,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="X_Block" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Tetris.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
