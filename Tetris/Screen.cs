@@ -13,7 +13,7 @@ namespace Tetris
 	/// <summary>
 	/// Screen is Singleton.
 	/// </summary>
-	public class Screen : DrawableObjects
+	public class Screen : DrawContext
 	{
 		readonly static int width = 80;
 		readonly static int height = 25;

@@ -13,9 +13,9 @@ using System.Linq;
 namespace Tetris
 {
 	/// <summary>
-	/// Description of DrawableObjects.
+	/// Description of DrawContext.
 	/// </summary>
-	public class DrawableObjects
+	public class DrawContext
 	{
 		readonly List<Drawable> currFrameList; //объекты кадра, который нужно отрисовать
 		readonly List<Drawable> prevFrameList; //объекты предыдущего кадра
@@ -23,7 +23,7 @@ namespace Tetris
 		readonly List<Drawable> drawList; //что нужно отрисовать заново
 		readonly List<Drawable> removeList; //объекты, которые нужно удалить из списка отрисовываемых
 		
-		protected DrawableObjects()
+		protected DrawContext()
 		{
 			currFrameList = new List<Drawable>();
 			prevFrameList = new List<Drawable>();
