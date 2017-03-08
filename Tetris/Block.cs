@@ -19,12 +19,6 @@ namespace Tetris
 		Direction orientation;
 		protected int[,] mass; //массив, в котором единица указывает на наличие точки
 		
-		public Direction Orientation {
-			get {
-				return orientation;
-			}
-		}
-		
 		protected Block(int x, int y, char sym) : base(x, y, sym)
 		{
 			orientation = Direction.UP;
