@@ -16,7 +16,8 @@ namespace Tetris
 	/// Description of Figure.
 	/// </summary>
 	public class Figure : Drawable
-	{
+	{	//TODO первести на относительные координаты экземпляры Point
+		//TODO добавить член класса "ориентация" и упростить сравнение фигур - координаты и ориентация???
 		public List<Point> pList;
 		public int x;
 		public int y;
@@ -105,7 +106,7 @@ namespace Tetris
 			return false;
 		}
 		
-		protected bool IsHit(Point point)
+		bool IsHit(Point point)
 		{
 			foreach(Point p in pList)
 				if(point.IsHit(p))
@@ -115,15 +116,6 @@ namespace Tetris
 		}
 		
 		#region implemented abstract members of Drawable
-		
-//		public override bool IsEqual(Drawable obj)
-//		{
-//			var figure = obj as Figure;
-//			if(figure != null)
-//				if(x == figure.x && y == figure.y)
-//					return true;
-//			return false;
-//		}
 		
 		public override bool IsEqual(Drawable obj)
 		{
