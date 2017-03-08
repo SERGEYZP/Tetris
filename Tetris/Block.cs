@@ -16,14 +16,20 @@ namespace Tetris
 	/// </summary>
 	abstract public class Block : Figure
 	{
-		protected Direction orientation;
+		Direction orientation;
 		protected int[,] mass; //массив, в котором единица указывает на наличие точки
+		
+		public Direction Orientation {
+			get {
+				return orientation;
+			}
+		}
 		
 		protected Block(int x, int y, char sym) : base(x, y, sym)
 		{
 			orientation = Direction.UP;
 		}
-		
+
 		protected void CreatePointsFromMass(int massSize, char sym, ConsoleColor color, int x, int y)
 		{
 			pList.Clear();
@@ -51,20 +57,34 @@ namespace Tetris
 			int massSize = mass.GetUpperBound(0) + 1;
 			int[,] newMass = new int[massSize, massSize];
 			
-			for(int i = 0; i < massSize; ++i)
-				for(int j = 0; j < massSize; ++j)
-					switch(direction)
-					{
-						case Direction.CLOCKWISE:
+			switch(direction)
+			{
+				case Direction.CLOCKWISE:
+					for(int i = 0; i < massSize; ++i)
+						for(int j = 0; j < massSize; ++j)
 							newMass[j, (massSize - 1 ) - i] = mass[i, j];
-							break;
-						case Direction.COUNTERCLOCKWISE:
+					
+					if(orientation == Direction.LEFT)
+						orientation = Direction.UP;
+					else
+						++orientation;
+					
+					break;
+				case Direction.COUNTERCLOCKWISE:
+					for(int i = 0; i < massSize; ++i)
+						for(int j = 0; j < massSize; ++j)
 							newMass[(massSize - 1) - j, i] = mass[i, j];
-							break;
-						default:
-							new NotImplementedException();
-							break;
-					}
+					
+					if(orientation == Direction.UP)
+						orientation = Direction.LEFT;
+					else
+						--orientation;
+					
+					break;
+				default:
+					new NotImplementedException();
+					break;
+			}
 			
 			mass = newMass;
 			CreatePointsFromMass(massSize, sym, pList.First().color, x, y);
