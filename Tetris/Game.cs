@@ -26,8 +26,6 @@ namespace Tetris
 		
 		int i; //счетчик для ожидания момента, когда нужно сдвинуть блок вниз
 		ConsoleKeyInfo key;
-
-
 		
 		readonly Wall wall;
 		readonly Field field;
@@ -64,7 +62,6 @@ namespace Tetris
 					break;
 			}
 			
-			//TODO (попробовал через паттерн Observer, экран начинает мигать!!!)в классе Screen создать список (интерфейс IDrawable) с фигурами (Figure), и пробегаясь по списку их отрисовывать, перед этим очистив экран
 			Screen.DrawGameOverMessage(gameInfo.Score);
 			Console.ReadKey(true);
 		}

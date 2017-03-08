@@ -16,8 +16,7 @@ namespace Tetris
 	/// Description of Figure.
 	/// </summary>
 	public class Figure : Drawable
-	{	//TODO первести на относительные координаты экземпляры Point
-		//TODO добавить член класса "ориентация" и упростить сравнение фигур - координаты и ориентация???
+	{	
 		public List<Point> pList;
 		public int x;
 		public int y;
