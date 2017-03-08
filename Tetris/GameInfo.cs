@@ -110,7 +110,7 @@ namespace Tetris
 		//заглушка метода сравнения, т.к. информация gameInfo всегда отрисовывается поверх предыдущего места
 		public override bool IsEqual(Drawable obj)
 		{
-			return true;
+			return false;
 		}
 
 		#endregion

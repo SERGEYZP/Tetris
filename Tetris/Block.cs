@@ -29,9 +29,9 @@ namespace Tetris
 			pList.Clear();
 			
 			for(int i = 0; i < massSize; ++i)
-					for(int j = 0; j < massSize; ++j)
-						if(mass[i, j] != 0)
-							pList.Add(new Point(x + j, y + i, sym, color));
+				for(int j = 0; j < massSize; ++j)
+					if(mass[i, j] != 0)
+						pList.Add(new Point(x + j, y + i, sym, color));
 		}
 		
 		public void DropDown(Field field)
